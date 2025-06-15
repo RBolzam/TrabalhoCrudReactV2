@@ -1,0 +1,120 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Todo API",
+      "version": "1.0.0",
+      "description": "API para gerenciamento de tarefas"
+    },
+    "paths": {
+      "/tasks": {
+        "get": {
+          "summary": "Listar todas as tarefas",
+          "responses": {
+            "200": {
+              "description": "Lista de tarefas",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/Task"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "post": {
+          "summary": "Criar nova tarefa",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Task"
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "Tarefa criada com sucesso"
+            }
+          }
+        }
+      },
+      "/tasks/{id}": {
+        "put": {
+          "summary": "Atualizar tarefa",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer"
+              }
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Task"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Tarefa atualizada"
+            }
+          }
+        },
+        "delete": {
+          "summary": "Excluir tarefa",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer"
+              }
+            }
+          ],
+          "responses": {
+            "204": {
+              "description": "Tarefa excluída"
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "Task": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer"
+            },
+            "title": {
+              "type": "string"
+            },
+            "description": {
+              "type": "string"
+            },
+            "completed": {
+              "type": "boolean"
+            },
+            "createdAt": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        }
+      }
+    }
+  }

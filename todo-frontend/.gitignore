@@ -1,0 +1,10 @@
+# Backend (Node.js)
+node_modules/
+.env
+.DS_Store
+.prisma/client
+
+# Frontend (React)
+todo-frontend/node_modules/
+todo-frontend/dist/
+todo-frontend/.env 
